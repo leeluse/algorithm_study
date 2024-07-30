@@ -1,6 +1,5 @@
 function solution(nums) {
-    var count = 0
-    var dic = new Set([...nums]).size
+    const setNums = new Set(nums)
+    return nums.length/2 < setNums.size ? nums.length/2 : setNums.size
     
-    return dic < nums.length / 2 ? dic : nums.length / 2
 }
