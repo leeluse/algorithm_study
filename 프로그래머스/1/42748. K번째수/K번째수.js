@@ -1,9 +1,8 @@
 function solution(array, commands) {
-    const answer = []
-    for (const [i, j, k] of commands) {
-        let sliceArr = array.slice(i-1, j);
-        answer.push(sliceArr.sort((a, b) => a - b)[k-1])
-    }
-    
-    return answer
+ const result = [];
+ for(const c of commands) {
+    const [n, m, k] = c;
+    result.push([...array].slice(n-1, m).sort((a, b) => a - b)[k-1]);
+ }
+ return result;
 }
