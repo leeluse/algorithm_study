@@ -1,14 +1,11 @@
 function solution(d, budget) {
-    let count = 0
-    let answer = 0
+    const sortD = d.sort((a, b) => a - b);
+    let result = 0;
     
-    d.sort((a, b) => a - b).forEach((v) => {
-        count += v
-        if(count > budget) {
-            return answer
-        }
-        answer += 1
-    })
-    
-    return answer
+    for(const v of d) {
+        if(budget - v < 0) break;
+        budget -= v;
+        result ++;
+    }
+    return result;
 }
