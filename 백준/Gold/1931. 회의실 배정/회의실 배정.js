@@ -3,17 +3,14 @@ const input = require("fs")
   .toString()
   .trim()
   .split("\n");
-
 let num = Number(input[0]);
 const arr = [];
 let count = 0;
-let prev = [0, 0];
 
 for (let i = 1; i <= num; i++) {
   const [n, m] = input[i].split(" ").map(Number);
   arr.push([n, m]);
 }
-
 
 arr.sort((a, b) => {
   if (a[1] == b[1]) {
@@ -22,11 +19,13 @@ arr.sort((a, b) => {
   return a[1] - b[1];
 });
 
+let prevEnd = 0;
+
 for (let i = 0; i < arr.length; i++) {
-  const [a, b] = arr[i];
-  const [prevA, prevB] = prev;
-  if (a < prevA || a < prevB) continue;
-  prev = [a, b];
+  const [start, end] = arr[i];
+  if (start < prevEnd) continue;
+  prevEnd = end;
+
   count++;
 }
 
