@@ -1,11 +1,13 @@
 function solution(brown, yellow) {
-    const num = brown + yellow;
-    let arr = [];
+    let num = brown + yellow;
+    let max = 1;
+    let result = [];
     
-    for(let i = 1; i <= num; i++) {
-        if(num%i == 0 && brown/2 >= i && (i-2)*(num/i-2) == yellow) {
-            return [Math.max(i, num/i), Math.min(i, num/i)]
-        } 
-    }
-    
+    for(let i = 3; i <= Math.sqrt(num); i++) {
+        if(Math.ceil(num/i) * i == num && (i-2) * (Math.ceil(num/i)-2) == yellow) {
+            result = [Math.ceil(num/i), i];
+            }
+        }
+    return result
 } 
+
