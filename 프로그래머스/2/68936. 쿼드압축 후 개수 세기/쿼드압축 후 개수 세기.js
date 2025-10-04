@@ -1,32 +1,22 @@
 function solution(arr) {
     const result = [0, 0];
     
-    function compress(arr) {
-        const first = arr[0][0];
-        let allSame = true;
-        
-        for(let i = 0; i < arr.length; i++) {
-            for(let j = 0; j < arr[i].length; j++) {
-                if(arr[i][j] !== first) {
-                    allSame = false;
-                    break;
-                }
-            }
-            if(!allSame) break;
-        }
+    function compress(grid) {
+        const first = grid[0][0];
+        const allSame = grid.every(row => row.every(val => val === first));
         
         if(allSame) {
             result[first]++;
             return;
         }
         
-        const n = arr.length;
+        const n = grid.length;
         const half = n / 2;
         
-        const topLeft = arr.slice(0, half).map(row => row.slice(0, half));
-        const topRight = arr.slice(0, half).map(row => row.slice(half));
-        const bottomLeft = arr.slice(half).map(row => row.slice(0, half));
-        const bottomRight = arr.slice(half).map(row => row.slice(half));
+        const topLeft = grid.slice(0, half).map(row => row.slice(0, half));
+        const topRight = grid.slice(0, half).map(row => row.slice(half));
+        const bottomLeft = grid.slice(half).map(row => row.slice(0, half));
+        const bottomRight = grid.slice(half).map(row => row.slice(half));
         
         compress(topLeft);
         compress(topRight);
@@ -37,4 +27,3 @@ function solution(arr) {
     compress(arr);
     return result;
 }
-
